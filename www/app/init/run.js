@@ -1,6 +1,6 @@
 'use strict';
 
-function IonicInit($ionicPlatform) {
+function IonicInit($ionicPlatform, InitService) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -10,6 +10,8 @@ function IonicInit($ionicPlatform) {
         if(window.StatusBar) {
             StatusBar.styleDefault();
         }
+
+        InitService.initApp();
     });
 }
 

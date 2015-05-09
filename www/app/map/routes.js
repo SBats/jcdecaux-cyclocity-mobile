@@ -10,7 +10,8 @@ function mapRoute($stateProvider) {
             views: {
                 'content' : {
                     template: require('./templates/map-content.html'),
-                    controller: controller.MapController
+                    controller: controller.MapController,
+                    controllerAs: 'map'
                 }
             }
 

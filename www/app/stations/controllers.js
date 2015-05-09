@@ -1,8 +1,10 @@
 'usse strict';
 
-function StationController(data) {
-    console.log(data);
-    this.data = data;
+function StationController(details) {
+    var self = this;
+
+    console.log(details);
+    self.details = details;
 }
 
 module.exports = {

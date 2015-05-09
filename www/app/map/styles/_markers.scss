@@ -1,0 +1,9 @@
+.leaflet-label {
+    background: transparent;
+    border: none;
+    color: inherit;
+    text-align: center;
+    &::after {
+        content: none;
+    }
+}

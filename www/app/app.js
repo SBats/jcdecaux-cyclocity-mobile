@@ -1,22 +1,17 @@
 'use strict';
 
 var dependencies = [
-  'app.layout',
-  'ionic'
+  'ionic',
+
+  'cyclecity.init',
+  'cyclecity.layout',
+  'cyclecity.map',
+  'cyclecity.stations'
 ];
 
-angular.module('app', dependencies)
-  .run(function($ionicPlatform) {
-    $ionicPlatform.ready(function() {
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
-      if(window.cordova && window.cordova.plugins.Keyboard) {
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      }
-      if(window.StatusBar) {
-        StatusBar.styleDefault();
-      }
-    });
-  });
+angular.module('cyclecity', dependencies);
 
+require('./init');
 require('./layout');
+require('./stations');
+require('./map');

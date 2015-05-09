@@ -2,6 +2,6 @@
 
 var angular = window.angular;
 
-angular.module('app.layout', ['ui.router'])
+angular.module('cyclecity.layout', ['ui.router'])
     .config(require('./routes').layoutRoutes)
     .controller('LayoutController', require('./controllers').LayoutController);

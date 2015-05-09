@@ -4,24 +4,14 @@ var controller = require('./controllers');
 
 function layoutRoutes($locationProvider, $stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/map');
 
     $stateProvider
         .state('root', {
             abstract: true,
-            url: '',
+            url: '/',
             template: require('./templates/layout.html'),
             controller: controller.LayoutController
-        })
-        .state('root.home', {
-            url: '/',
-            views: {
-                'content' : {
-                    template: require('./templates/home-content.html'),
-                    controller: controller.ContentController
-                }
-            }
-
         });
 }
 

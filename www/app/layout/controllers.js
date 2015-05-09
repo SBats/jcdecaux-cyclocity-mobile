@@ -1,11 +1,7 @@
 'use strict';
 
 function LayoutController() {
-    
-}
-
-function ContentController() {
-    
+    console.log('app loaded');
 }
 
 module.exports = {

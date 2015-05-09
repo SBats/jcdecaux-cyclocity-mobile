@@ -2,13 +2,14 @@
 var src = 'www',
     dest = 'www',
     appFolder = 'app',
-    appName = 'app';
+    appName = 'cyclecity';
 
 
 module.exports = {
     sass: {
-        src: src + '/' + appFolder + '/' + appName + '.scss',
+        src: src + '/' + appFolder + '/app.scss',
         dest: dest,
+        outputName: appName + '.css',
         toWatch: src + '/' + appFolder + '/**/*.scss',
         settings: {
             sourceComments: 'map',
@@ -20,13 +21,18 @@ module.exports = {
             imagePath: '/img' // Used by the image-url helper
         }
     },
+    vendors: {
+        debug: true,
+        outputName : appName + '-vendors.js',
+        dest: dest
+    },
     browserify: {
         debug: true,
         // A separate bundle will be generated for each
         // bundle config in the list below
         bundleConfigs: [
             {
-                entries: src + '/' + appFolder + '/' + appName + '.js',
+                entries: src + '/' + appFolder + '/app.js',
                 dest: dest,
                 outputName: appName + '.js'
             }

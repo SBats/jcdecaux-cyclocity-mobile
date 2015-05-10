@@ -1,4 +1,29 @@
 <ion-view>
     <ion-content>
+        <div class="header">
+            <h1>{{details.name}}</h1>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card cycles">
+                    <i class="icon ion-android-bicycle"></i>
+                    <h2>{{details.available_bikes}}</h2>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card parks">
+                    <span class="icon">P</span>
+                    <h2>{{details.available_bike_stands}}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card distance">
+                    <i class='icon ion-android-walk'></i>
+                    <h3>{{distanceToStation}}</h3>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

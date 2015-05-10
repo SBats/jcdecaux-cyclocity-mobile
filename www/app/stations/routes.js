@@ -10,7 +10,6 @@ function StationRoute($stateProvider) {
             views: {
                 'content' : {
                     template: require('./templates/station-detail.html'),
-                    controllerAs: 'station',
                     controller: controller.StationController
                 }
             },

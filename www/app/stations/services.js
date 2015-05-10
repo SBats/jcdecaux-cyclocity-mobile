@@ -63,6 +63,14 @@ function StationsService($q, $resource, appSettings) {
 
         return deferred.promise;
     };
+
+    self.getDistanceToStation = function () {
+        var deferred = $q.defer();
+
+        deferred.resolve(42);
+
+        return deferred.promise;
+    };
 }
 
 module.exports = {

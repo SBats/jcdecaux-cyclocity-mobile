@@ -1,7 +1,6 @@
 'use strict'
 
 function MapController(MapService, StationsService) {
-    var self = this;
 
     function init() {
         MapService.initMap('map');
@@ -13,7 +12,7 @@ function MapController(MapService, StationsService) {
                     MapService.loadStations(stationsList)
                         .then(
                             function (currentView) {
-                                self.currentView = currentView;
+                                $scope.currentView = currentView;
                             },
                             function (err) {
                                 console.error(err);

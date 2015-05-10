@@ -5,6 +5,26 @@ var L = window.L;
 function MapService(appSettings, $q, $state) {
     var self = this;
 
+    self.createLocationMarker = function (position) {
+        if (!self._locationMarker) {
+            var currentIcon = L.divIcon({
+                className: 'location',
+                iconSize: [60, 60],
+                iconAnchor: [60, 60]
+            });
+
+            self._locationMarker = new L.Marker([position.coords.latitude, position.coords.longitude],{
+                icon: currentIcon
+            });
+            console.log(self._locationMarker);
+            self._map.addLayer(self._locationMarker);
+        } else {
+            self._locationMarker.setLatLng([position.coords.latitude, position.coords.longitude]);
+        }
+
+        
+    };
+
     self.createClusterLayer = function () {
         return new L.markerClusterGroup({
             showCoverageOnHover: false,
@@ -22,6 +42,21 @@ function MapService(appSettings, $q, $state) {
 
     };
 
+    self.getLocation = function () {
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                console.log(position);
+                self._map.setView([position.coords.latitude, position.coords.longitude], 16);
+                self.createLocationMarker(position);
+            },function (err) {
+                console.log(err);
+            },{
+                maximumAge: 3000,
+                timeout: 5000,
+                enableHighAccuracy: true 
+            });
+    };
+
     self.loadStations = function (stations) {
         var deferred = $q.defer(),
             i = 0;
@@ -32,13 +67,13 @@ function MapService(appSettings, $q, $state) {
             var available, 
                 percent;
             
-            if(self._currentView === 'station'){
+            if(self._currentView === 'parks'){
                 percent = Math.floor((Math.round(aStation.available_bike_stands/aStation.bike_stands*100)+5)/10)*10;
             }else{
                 percent = Math.floor((Math.round(aStation.available_bikes/aStation.bike_stands*100)+5)/10)*10;
             }
             
-            if(self._currentView === 'station'){
+            if(self._currentView === 'parks'){
                 available = String(aStation.available_bike_stands);
             }else{
                 available = String(aStation.available_bikes);
@@ -47,8 +82,8 @@ function MapService(appSettings, $q, $state) {
             var currentIcon = L.icon({
                 iconUrl: 'img/markers/'+ self._currentView +'-marker-'+ percent +'.png',
                 iconSize: [38, 60],
-                iconAnchor: [38, 60],
-                labelAnchor: [-5, -37]
+                iconAnchor: [19, 60],
+                labelAnchor: [-24, -37]
             });
 
             var currentMarker = new L.Marker([aStation.position.lat, aStation.position.lng],{
@@ -79,6 +114,20 @@ function MapService(appSettings, $q, $state) {
         });
 
         return deferred.promise;
+    };
+
+    self.getCurrentView = function () {
+        return self._currentView;
+    };
+
+    self.switchCurrentView = function () {
+        if (self._currentView === 'cycle') {
+            self._currentView = 'parks';
+        } else if (self._currentView === 'parks') {
+            self._currentView = 'cycle';
+        }
+
+        return self._currentView;
     };
 
     self.initMap = function (mapSelector) {

@@ -3,6 +3,12 @@
 	border-radius: 20px;
 	background: white;
 	border: 5px solid $primary-color;
+	.cycle-view & {
+        border-color: $primary-color;
+    }
+    .parks-view & {
+        border-color: $secondary-color;
+    }
 	div {
 		width: 30px;
 		height: 30px;

@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view ng-class="currentView + '-view'">
     <ion-nav-buttons side="right">
         <button class="button button-clear icon ion-pinpoint" ng-click="getLocation()"></button>
         <button class="button button-clear icon ion-android-refresh" ng-click="loadStations(true)"></button>
@@ -6,4 +6,8 @@
     <div class="map-container" data-tap-disabled="true">
         <div id="map"></div>
     </div>
+    <button class="switch-button button" ng-click="switchView()">
+        <i ng-if="currentView === 'parks'" class="icon ion-android-bicycle"></i>
+        <span ng-if="currentView === 'cycle'">P</span>
+    </button>
 </ion-view>

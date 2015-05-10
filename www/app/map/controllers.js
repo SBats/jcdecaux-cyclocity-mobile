@@ -1,6 +1,6 @@
 'use strict'
 
-function MapController($scope, MapService, StationsService) {
+function MapController($scope, $rootScope, MapService, StationsService) {
 
     $scope.loadStations = function (forceRefresh) {
         StationsService.getStations(forceRefresh)
@@ -23,24 +23,27 @@ function MapController($scope, MapService, StationsService) {
     };
 
     $scope.getLocation = function () {
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                console.log(position);
-            },function (err) {
-                console.log(err);
-            },{
-                maximumAge: 3000,
-                timeout: 5000,
-                enableHighAccuracy: true 
-            });
+        MapService.getLocation();
+    };
+
+    $scope.switchView = function () {
+        $scope.currentView = MapService.switchCurrentView();
+        $scope.loadStations(true);
     };
 
     function init() {
         MapService.initMap('map');
         $scope.loadStations(true);
+        $scope.currentView = MapService.getCurrentView();
     }
 
     init();
+
+    $rootScope.$on('$stateChangeStart', function (event, toState) {
+        if (toState.name === 'root.map') {
+            $scope.loadStations(true);
+        }
+    });
 }
 
 module.exports = {

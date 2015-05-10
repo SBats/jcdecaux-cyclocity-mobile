@@ -6,6 +6,7 @@ var dependencies = [
 
   'cyclecity.init',
   'cyclecity.config',
+  'cyclecity.commons',
   'cyclecity.layout',
   'cyclecity.map',
   'cyclecity.stations',
@@ -20,6 +21,7 @@ angular.module('cyclecity', dependencies);
 
 require('./init');
 require('./config');
+require('./commons');
 require('./layout');
 require('./stations');
 require('./map');

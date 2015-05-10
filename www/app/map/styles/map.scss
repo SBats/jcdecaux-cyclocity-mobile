@@ -3,5 +3,27 @@
     width: 100%;
 }
 
+.switch-button {
+    position: absolute;
+    z-index: 1;
+    height: 4rem;
+    width: 4rem;
+    bottom: 2rem;
+    right: 2rem;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    > i, > span {
+        display: block;
+    }
+    .cycle-view & {
+        background: $secondary-color;
+    }
+    .parks-view & {
+        background: $primary-color;
+    }
+}
+
 @import "_markers";
 @import "_clusters";

@@ -3,6 +3,14 @@
 function StationsService($q, $resource, appSettings) {
     var self = this;
 
+    function refactorData(data) {
+        angular.forEach(data, function (element) {
+            element.name = element.name.substring(element.name.indexOf('-')+1).trim();
+        });
+
+        return data;
+    }
+
     self.getStations = function (forceRefresh) {
         var deferred = $q.defer();
 
@@ -24,7 +32,7 @@ function StationsService($q, $resource, appSettings) {
 
             requests.query().$promise
                 .then(function (data) {
-                    self._stations = data;
+                    self._stations = refactorData(data);
                     deferred.resolve(self._stations);
                 });
         }
@@ -54,7 +62,7 @@ function StationsService($q, $resource, appSettings) {
 
             requests.query().$promise
                 .then(function (data) {
-                    self[stationRef] = data;
+                    self[stationRef] = refactorData(data);
                     deferred.resolve(self[stationRef]);
                 });
         }

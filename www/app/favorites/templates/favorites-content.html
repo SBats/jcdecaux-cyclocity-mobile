@@ -13,7 +13,7 @@
             <span>No favorites</span>
         </div>
         <ion-list ng-if="favorites.length > 0">
-            <ion-item ng-repeat="fav in favorites" class="favorite">
+            <ion-item ng-repeat="fav in favorites | orderBy: currentOrdering" class="favorite">
                 <div class="numbers">
                     <div class="cycles">
                         <i class="icon ion-android-bicycle"></i>

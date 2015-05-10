@@ -30,6 +30,7 @@ function FavoritesController($scope, $rootScope, FavoritesService, StationsServi
     };
 
     $scope.updateFavorites(true);
+    $scope.currentOrdering = 'name';
 
     $rootScope.$on('$stateChangeStart', function (event, toState) {
         if (toState.url === 'favorites') {

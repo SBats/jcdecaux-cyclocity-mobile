@@ -22,6 +22,19 @@ function MapController($scope, MapService, StationsService) {
             );
     };
 
+    $scope.getLocation = function () {
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                console.log(position);
+            },function (err) {
+                console.log(err);
+            },{
+                maximumAge: 3000,
+                timeout: 5000,
+                enableHighAccuracy: true 
+            });
+    };
+
     function init() {
         MapService.initMap('map');
         $scope.loadStations(true);

@@ -14,7 +14,7 @@ function StationRoute($stateProvider) {
                 }
             },
             resolve: {
-                details: function ($stateParams, StationsService) {
+                station: function ($stateParams, StationsService) {
                     return StationsService.getStationDetail($stateParams.stationId);
                 }
             }

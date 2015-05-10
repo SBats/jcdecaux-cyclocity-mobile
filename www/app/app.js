@@ -8,7 +8,8 @@ var dependencies = [
   'cyclecity.config',
   'cyclecity.layout',
   'cyclecity.map',
-  'cyclecity.stations'
+  'cyclecity.stations',
+  'cyclecity.favorites'
 ];
 
 window.L = require('leaflet');
@@ -22,3 +23,4 @@ require('./config');
 require('./layout');
 require('./stations');
 require('./map');
+require('./favorites');

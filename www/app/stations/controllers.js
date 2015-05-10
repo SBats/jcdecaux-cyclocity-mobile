@@ -1,8 +1,9 @@
 'usse strict';
 
-function StationController(details, $scope, StationsService) {
-    console.log(details);
-    $scope.details = details;
+function StationController(station, $scope, StationsService, FavoritesService) {
+    console.log(station);
+    $scope.station = station;
+    $scope.isInFavorites = FavoritesService.isInFavorites;
 
     function getDistance() {
         $scope.distanceToStation = '...';
@@ -14,7 +15,18 @@ function StationController(details, $scope, StationsService) {
             );
     }
 
-    getDistance();
+    $scope.switchFavorite = function () {
+        if (FavoritesService.isInFavorites(station)) {
+            FavoritesService.removeAFavorite(station);
+        } else {
+            FavoritesService.addAFavorite(station);
+        }
+    };
+
+    function init() {
+        getDistance();
+    }
+
 }
 
 module.exports = {

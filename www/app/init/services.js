@@ -1,15 +1,12 @@
 'use strict';
 
-function InitService(StationsService) {
+function InitService(StationsService, FavoritesService) {
     var self = this;
-
-    self.getStations = function () {
-        StationsService.getStations();
-    };
 
     self.initApp = function () {
         console.log('app init');
-        self.getStations();
+        StationsService.getStations();
+        FavoritesService.getFavorites();
     };
 }
 

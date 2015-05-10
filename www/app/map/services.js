@@ -26,6 +26,8 @@ function MapService(appSettings, $q, $state) {
         var deferred = $q.defer(),
             i = 0;
 
+        self._clustersLayer.clearLayers();
+
         angular.forEach(stations, function(aStation) {
             var available, 
                 percent;

@@ -14,7 +14,6 @@ function StationsService($q, $resource, appSettings) {
             var requests = $resource(url, {}, {
                 query: {
                     method: 'GET',
-                    cache: true,
                     params:{
                         contract: appSettings.CITY,
                         apiKey: appSettings.JCDKEY
@@ -45,7 +44,6 @@ function StationsService($q, $resource, appSettings) {
             var requests = $resource(url, {}, {
                 query: {
                     method: 'GET',
-                    cache: true,
                     params:{
                         contract: appSettings.CITY,
                         apiKey: appSettings.JCDKEY

@@ -29,5 +29,13 @@ $ionicons-font-path: "./lib/ionic/fonts" !default;
 // Include Vendors
 @import "vendors/styles/vendors";
 
+
+.bar {
+    button.button-clear.ion-android-more-vertical {
+        padding: 0 10px;
+    }
+}
+
 // Include custom style
 @import "map/styles/map";
+@import "favorites/styles/favorites";

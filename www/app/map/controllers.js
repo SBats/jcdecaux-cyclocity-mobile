@@ -1,14 +1,11 @@
 'use strict'
 
-function MapController(MapService, StationsService) {
+function MapController($scope, MapService, StationsService) {
 
-    function init() {
-        MapService.initMap('map');
-
-        StationsService.getStations()
+    $scope.loadStations = function (forceRefresh) {
+        StationsService.getStations(forceRefresh)
             .then(
                 function (stationsList) {
-                    console.log(stationsList);
                     MapService.loadStations(stationsList)
                         .then(
                             function (currentView) {
@@ -23,6 +20,11 @@ function MapController(MapService, StationsService) {
                     console.error(err);
                 }
             );
+    };
+
+    function init() {
+        MapService.initMap('map');
+        $scope.loadStations(true);
     }
 
     init();

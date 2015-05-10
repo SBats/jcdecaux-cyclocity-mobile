@@ -1,19 +1,23 @@
 <ion-view>
     <ion-content>
         <div class="header">
-            <h1>{{details.name}}</h1>
+            <h1>{{station.name}}</h1>
+            <div class="fav-toggle" ng-class="{isFav: isInFavorites(station)}" ng-click="switchFavorite()">
+                <i ng-if="!isInFavorites(station)" class="icon ion-android-star-outline"></i>
+                <i ng-if="isInFavorites(station)" class="icon ion-android-star"></i>
+            </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="card cycles">
                     <i class="icon ion-android-bicycle"></i>
-                    <h2>{{details.available_bikes}}</h2>
+                    <h2>{{station.available_bikes}}</h2>
                 </div>
             </div>
             <div class="col">
                 <div class="card parks">
-                    <span class="icon">P</span>
-                    <h2>{{details.available_bike_stands}}</h2>
+                    <i class="icon">P</i>
+                    <h2>{{station.available_bike_stands}}</h2>
                 </div>
             </div>
         </div>

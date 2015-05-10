@@ -4,9 +4,13 @@ function StationsService($q, $resource, appSettings) {
     var self = this;
 
     function refactorData(data) {
-        angular.forEach(data, function (element) {
-            element.name = element.name.substring(element.name.indexOf('-')+1).trim();
-        });
+        if (data.name) {
+            data.name = data.name.substring(data.name.indexOf('-')+1).trim();
+        } else {
+            angular.forEach(data, function (element) {
+                element.name = element.name.substring(element.name.indexOf('-')+1).trim();
+            });
+        }
 
         return data;
     }

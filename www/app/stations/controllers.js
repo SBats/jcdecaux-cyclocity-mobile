@@ -33,6 +33,7 @@ function StationController(station, $scope, $rootScope, StationsService, Favorit
         } else {
             FavoritesService.addAFavorite(station);
         }
+        $rootScope.numberOfFavorites = FavoritesService.countFavorites();
     };
 
     function init() {

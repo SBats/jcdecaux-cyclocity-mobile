@@ -17,6 +17,9 @@ $dark:                            #444 !default;
 
 $primary-color: #ef473a;
 $secondary-color: #5f7c8a;
+$light-grey: #ECECEC;
+
+
 $assertive: $primary-color;
 
 
@@ -38,4 +41,6 @@ $ionicons-font-path: "./lib/ionic/fonts" !default;
 
 // Include custom style
 @import "map/styles/map";
+@import "layout/styles/layout";
+@import "stations/styles/station";
 @import "favorites/styles/favorites";

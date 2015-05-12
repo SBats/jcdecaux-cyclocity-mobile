@@ -3,6 +3,10 @@
     width: 100%;
 }
 
+.platform-ios .map-container {
+    height: calc(100% - 50px);
+}
+
 .switch-button {
     position: absolute;
     z-index: 1;
@@ -22,6 +26,24 @@
     }
     .parks-view & {
         background: $primary-color;
+    }
+}
+
+.tab-item {
+    opacity: 0.4;
+}
+
+.switch-tabs {
+    .tabs {
+        bottom: -2px;
+    }
+    .tab-item.cycle {
+        color: $primary-color;
+        border-color: $primary-color;
+    }
+    .tab-item.parks {
+        color: $secondary-color;
+        border-color: $secondary-color;
     }
 }
 

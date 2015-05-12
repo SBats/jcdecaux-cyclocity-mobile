@@ -5,3 +5,62 @@
         margin-bottom: 0;
     }
 }
+
+.no-favorites {
+    font-size: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    font-weight: bolder;
+    margin: 1rem;
+    color: darken(white, 20);
+}
+
+.favorite {
+    a.item-content {
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        > div {
+            margin: 1rem;
+            &:first-child {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+    .infos {
+        flex: 1 1 50%;
+    }
+    .numbers {
+        font-size: 1.4rem;
+        width: 4rem;
+        span, i {
+            display: inline-block;
+            width: 1.5rem;
+            text-align: center;
+        }
+    }
+    .cycles {
+        color: $primary-color;
+        margin-bottom: 1rem;
+    }
+    .parks {
+        color: $secondary-color;
+    }
+}
+
+.favorites-counter_header {
+    background: white;
+    color: $primary-color;
+    display: inline-block;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    line-height: 1.4rem;
+    min-width: 1.4rem;
+    margin-left: 1rem;
+    text-align: center;
+    position: relative;
+    top: -3px;
+}

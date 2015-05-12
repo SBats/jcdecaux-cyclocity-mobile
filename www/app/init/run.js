@@ -11,6 +11,12 @@ function IonicInit($ionicPlatform, InitService) {
             StatusBar.styleDefault();
         }
 
+        if (!String.prototype.capitalizeFirstLetter) {
+            String.prototype.capitalizeFirstLetter = function() {
+                return this.charAt(0).toUpperCase() + this.slice(1);
+            }
+        }
+
         InitService.initApp();
     });
 }

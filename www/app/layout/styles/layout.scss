@@ -1,0 +1,15 @@
+.favorites-counter {
+    background: $dark;
+    color: white;
+    display: inline-block;
+    border-radius: 50%;
+    font-size: 1rem;
+    min-width: 1.8rem;
+    float: right;
+    text-align: center;
+    .item.active & {
+        background: $primary-color;
+    }
+}
+
+@import "./_menu";

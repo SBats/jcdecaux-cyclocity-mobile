@@ -8,12 +8,15 @@ function FavoritesController($scope, $rootScope, FavoritesService, StationsServi
         StationsService.getStations(forceRefresh)
             .then(
                 function (stationList) {
+                    var counter = 0;
                     angular.forEach(stationList, function (station) {
                         if (favoritesListe[station.number]) {
                             favorites.push(station);
+                            counter ++;
                         }
                     });
                     $scope.favorites = favorites;
+                    $rootScope.numberOfFavorites = FavoritesService.countFavorites();
                     $scope.$broadcast('scroll.refreshComplete');
                     console.log(favorites);
                 }
@@ -26,7 +29,8 @@ function FavoritesController($scope, $rootScope, FavoritesService, StationsServi
     };
 
     $scope.removeAllFavorites = function () {
-        $scope.favorites = FavoritesService.removeAllFavorites();
+        $scope.favorites = [];
+        FavoritesService.removeAllFavorites();
     };
 
     $scope.updateFavorites(true);

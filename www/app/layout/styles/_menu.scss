@@ -1,0 +1,22 @@
+ion-side-menu {
+    line-height: 1.8rem;
+    font-size: 1.8rem;
+    color: $dark;
+    item-content {
+        line-height: 1.8rem
+    }
+    i {
+        font-size: 1.8rem;
+        margin-right: 1.5rem;
+        width: 2rem;
+        display: inline-block;
+        text-align: center;
+    }
+    i, span {
+        vertical-align: middle;   
+    }
+    ion-item.active {
+        background: $light-grey;
+        color: $primary-color;
+    }
+}

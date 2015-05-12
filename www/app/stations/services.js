@@ -5,10 +5,12 @@ function StationsService($q, $resource, appSettings) {
 
     function refactorData(data) {
         if (data.name) {
-            data.name = data.name.substring(data.name.indexOf('-')+1).trim();
+            data.name = data.name.substring(data.name.indexOf('-')+1).trim().toLowerCase().capitalizeFirstLetter();
+            data.address = data.address.trim().toLowerCase().capitalizeFirstLetter();
         } else {
             angular.forEach(data, function (element) {
-                element.name = element.name.substring(element.name.indexOf('-')+1).trim();
+                element.name = element.name.substring(element.name.indexOf('-')+1).trim().toLowerCase().capitalizeFirstLetter();
+                element.address = element.address.trim().toLowerCase().capitalizeFirstLetter();
             });
         }
 

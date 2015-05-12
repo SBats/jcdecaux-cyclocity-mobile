@@ -29,6 +29,14 @@ function FavoritesService(appSettings) {
         return self._favorites;
     };
 
+    self.countFavorites = function () {
+        if (!self._favorites) {
+            self.getFavorites();
+        }
+
+        return Object.keys(self._favorites).length;
+    };
+
     self.setFavorites = function () {
         var favorites_json = JSON.stringify(self._favorites);
         localStorage.setItem(storageName, favorites_json);

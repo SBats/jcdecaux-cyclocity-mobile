@@ -15,11 +15,21 @@
   <ion-side-menu side="left">
     <ion-content>
       <ion-list>
-        <ion-item nav-clear menu-close ui-sref="root.map">
-          Map
+        <ion-item nav-clear menu-close ui-sref="root.map" ui-sref-active="active">
+          <i ng-if="isIOS" class="icon ion-ios-navigate-outline"></i>
+          <i ng-if="!isIOS" class="icon ion-map"></i>
+          <span>Map</span>
         </ion-item>
-        <ion-item nav-clear menu-close ui-sref="root.favorites">
-          Favorites
+        <ion-item nav-clear menu-close ui-sref="root.favorites" ui-sref-active="active">
+          <i ng-if="isIOS" class="icon ion-ios-star-outline"></i>
+          <i ng-if="!isIOS" class="icon ion-android-star"></i>
+          <span>Favorites</span>
+          <span ng-if="numberOfFavorites > 0" class="favorites-counter"> {{$root.numberOfFavorites}}</span>
+        </ion-item>
+        <ion-item ng-if="isIOS || isAndroid" ng-click="exitApp()">
+          <i ng-if="isIOS" class="icon ion-ios-bolt-outline"></i>
+          <i ng-if="!isIOS" class="icon ion-power"></i>
+          <span>Exit App</span>
         </ion-item>
       </ion-list>
     </ion-content>

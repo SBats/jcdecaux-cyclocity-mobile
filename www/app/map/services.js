@@ -83,7 +83,7 @@ function MapService(appSettings, $q, $state) {
                 iconUrl: 'img/markers/'+ self._currentView +'-marker-'+ percent +'.png',
                 iconSize: [38, 60],
                 iconAnchor: [19, 60],
-                labelAnchor: [-24, -37]
+                labelAnchor: [-19, -37]
             });
 
             var currentMarker = new L.Marker([aStation.position.lat, aStation.position.lng],{

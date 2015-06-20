@@ -19,7 +19,7 @@ function StationController(station, $scope, $rootScope, StationsService, Favorit
 
     function getDistance() {
         $scope.distanceToStation = '...';
-        StationsService.getDistanceToStation()
+        StationsService.getDistanceToStation(station.position)
             .then(
                 function (distance) {
                     $scope.distanceToStation = distance;
@@ -39,6 +39,8 @@ function StationController(station, $scope, $rootScope, StationsService, Favorit
     function init() {
         getDistance();
     }
+
+    init();
 
     $rootScope.$on('$stateChangeStart', function (event, toState) {
         if (toState.name === 'root.station') {

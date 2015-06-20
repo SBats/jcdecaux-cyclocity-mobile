@@ -1,6 +1,6 @@
 'use strict';
 
-function StationsService($q, $resource, appSettings) {
+function StationsService($q, $resource, appSettings, MapService) {
     var self = this;
 
     function refactorData(data) {
@@ -76,13 +76,27 @@ function StationsService($q, $resource, appSettings) {
         return deferred.promise;
     };
 
-    self.getDistanceToStation = function () {
+    self.getDistanceToStation = function (stationLocation) {
         var deferred = $q.defer();
+        MapService.getLocation()
+            .then(
+                function (location) {
+                    var userLocation = {
+                        lat: location.coords.latitude,
+                        lng: location.coords.longitude
+                    };
 
-        deferred.resolve(42);
+                    var distance = MapService.getDistanceBetweenTwoPoints(userLocation, stationLocation);
+                    deferred.resolve(distance);
+                },
+                function (err) {
+                    console.error(err);
+                }
+            );
 
         return deferred.promise;
     };
+
 }
 
 module.exports = {

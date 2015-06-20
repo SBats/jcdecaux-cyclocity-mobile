@@ -22,8 +22,8 @@ function MapController($scope, $rootScope, MapService, StationsService) {
             );
     };
 
-    $scope.getLocation = function () {
-        MapService.getLocation();
+    $scope.showLocation = function () {
+        MapService.showLocation();
     };
 
     $scope.switchView = function () {

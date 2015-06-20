@@ -47,18 +47,33 @@ function MapService(appSettings, $q, $state) {
     };
 
     self.getLocation = function () {
+        var deferred = $q.defer();
         navigator.geolocation.getCurrentPosition(
             function (position) {
-                console.log(position);
-                self._map.setView([position.coords.latitude, position.coords.longitude], 16);
-                self.createLocationMarker(position);
+                deferred.resolve(position);
             },function (err) {
-                console.log(err);
+                console.error(err);
             },{
                 maximumAge: 3000,
                 timeout: 5000,
                 enableHighAccuracy: true 
             });
+
+        return deferred.promise;
+    };
+
+    self.showLocation = function () {
+        self.getLocation()
+            .then(
+                function (position) {
+                    console.log(position);
+                    self._map.setView([position.coords.latitude, position.coords.longitude], 16);
+                    self.createLocationMarker(position);
+                },
+                function (err) {
+                    console.error(err);
+                }
+            );
     };
 
     self.loadStations = function (stations) {
@@ -156,6 +171,21 @@ function MapService(appSettings, $q, $state) {
         self._map = L.map(mapSelector, mapParameters);
         self._clustersLayer = self.createClusterLayer();
         self._currentView = appSettings.DEFAULT_VUE || 'cycle';
+    };
+
+    self.getDistanceBetweenTwoPoints = function (pointA, pointB) {
+        var x = pointA.lat - pointB.lat;
+        var y = pointA.lng - pointB.lng;
+
+        var result = parseInt(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))*100000);
+
+        if (result > 500) {
+            result = String(result/1000).substr(0, 4) + 'km';
+        } else {
+            result = result + 'm';
+        }
+
+        return result;
     };
 }
 

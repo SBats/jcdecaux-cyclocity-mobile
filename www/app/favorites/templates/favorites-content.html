@@ -35,8 +35,8 @@
                     <div class="distance">{{fav.distance}}</div>
                 </div>
                 <div class="actions">
-                    <button ng-if="!isIOS" class="remove button button-clear icon ion-trash-b" ng-click="removeAFavorite(fav)"></button>
-                    <button ng-if="isIOS" class="remove button button-clear icon ion-ios-trash-outline" ng-click="removeAFavorite(fav)"></button>
+                    <button ng-if="!isIOS" class="remove button button-clear icon ion-trash-b" ng-click="removeAFavorite($event, fav)"></button>
+                    <button ng-if="isIOS" class="remove button button-clear icon ion-ios-trash-outline" ng-click="removeAFavorite($event, fav)"></button>
                 </div>
             </ion-item>
         </ion-list>

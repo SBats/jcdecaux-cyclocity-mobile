@@ -36,7 +36,6 @@ function MapController($scope, $rootScope, MapService, StationsService) {
         $scope.loadStations(true);
         $scope.currentView = MapService.getCurrentView();
     }
-
     init();
 
     $rootScope.$on('$stateChangeStart', function (event, toState) {

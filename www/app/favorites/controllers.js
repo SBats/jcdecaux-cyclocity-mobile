@@ -9,7 +9,6 @@ function FavoritesController($scope, $rootScope, FavoritesService, StationsServi
                     $scope.favorites = favorites;
                     $rootScope.numberOfFavorites = favorites.length;
                     $scope.$broadcast('scroll.refreshComplete');
-                    console.log(favorites);
                 },
                 function (err) {
                     console.error(err);
@@ -17,7 +16,8 @@ function FavoritesController($scope, $rootScope, FavoritesService, StationsServi
             );
     };
 
-    $scope.removeAFavorite = function (station) {
+    $scope.removeAFavorite = function ($event, station) {
+        $event.stopPropagation();
         FavoritesService.removeAFavorite(station);
         $scope.updateFavorites(false);
     };

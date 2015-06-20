@@ -4,7 +4,7 @@ var constants = {
 
     APP_ID: 'velo-toulouse',
     API_URL: 'https://api.jcdecaux.com/vls/v1/stations',
-    JCDKEY: '003549deb9ac51b9d34cacc018c0e7f97039c6f9',
+    JCDKEY: 'YOUR_JCDECEAUX_API_KEY',
     MAPQUESTKEY: '',
     CITY: 'Toulouse',
     DEFAULT_VUE: 'cycle', // can be 'cycle' or 'parks',

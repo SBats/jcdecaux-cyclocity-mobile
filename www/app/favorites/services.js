@@ -1,6 +1,6 @@
 'use strict'
 
-function FavoritesService(appSettings) {
+function FavoritesService($q, appSettings, StationsService, MapService) {
     var self = this,
         storageName = appSettings.APP_ID + '-favorites';
 
@@ -61,6 +61,60 @@ function FavoritesService(appSettings) {
             delete self._favorites[station.number];
             self.setFavorites();
         }
+    };
+
+    self.getFavoritesStations = function (forceRefresh) {
+        var deferred = $q.defer(),
+            favoritesListe = self.getFavorites(),
+            favorites = [],
+            stationsList = [],
+            userLocation = {},
+            promises = [];
+
+        promises.push(StationsService.getStations(forceRefresh)
+            .then(
+                function (stations) {
+                    stationsList = stations;
+                }
+            )
+        );
+
+        promises.push(MapService.getLocation()
+            .then(
+                function (location) {
+                    userLocation = {
+                        lat: location.coords.latitude,
+                        lng: location.coords.longitude
+                    };
+                }
+            )
+        );
+
+        $q.all(promises)
+            .then(
+                function () {
+                    angular.forEach(stationsList, function (station) {
+                        if (favoritesListe[station.number]) {
+                            var distance = MapService.getDistanceBetweenTwoPoints(userLocation, station.position);
+                            station.distance = distance;
+
+                            if (distance > 500) {
+                                station.distanceFromUser = Math.round(distance/10)/100 + ' km';
+                            } else {
+                                station.distanceFromUser = distance + ' m';
+                            }
+                            favorites.push(station);
+                        }
+                    });
+
+                    deferred.resolve(favorites);
+                },
+                function (err) {
+                    console.error(err);
+                }
+            );
+
+        return deferred.promise;
     };
 }
 

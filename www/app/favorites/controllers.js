@@ -3,34 +3,39 @@
 function FavoritesController($scope, $rootScope, FavoritesService, StationsService, $ionicPopover) {
 
     $scope.updateFavorites = function (forceRefresh) {
-        var favoritesListe = FavoritesService.getFavorites();
-        var favorites = [];
-        StationsService.getStations(forceRefresh)
+        FavoritesService.getFavoritesStations(forceRefresh)
             .then(
-                function (stationList) {
-                    var counter = 0;
-                    angular.forEach(stationList, function (station) {
-                        if (favoritesListe[station.number]) {
-                            favorites.push(station);
-                            counter ++;
-                        }
-                    });
+                function (favorites) {
                     $scope.favorites = favorites;
-                    $rootScope.numberOfFavorites = FavoritesService.countFavorites();
+                    $rootScope.numberOfFavorites = favorites.length;
                     $scope.$broadcast('scroll.refreshComplete');
                     console.log(favorites);
+                },
+                function (err) {
+                    console.error(err);
                 }
             );
     };
 
     $scope.removeAFavorite = function (station) {
         FavoritesService.removeAFavorite(station);
-        $scope.updateFavorites(false); 
+        $scope.updateFavorites(false);
     };
 
     $scope.removeAllFavorites = function () {
         $scope.favorites = [];
         FavoritesService.removeAllFavorites();
+        $scope.updateFavorites(false);
+    };
+
+    $scope.orderByName = function () {
+        $scope.currentOrdering = 'name';
+        $scope.closePopover();
+    };
+
+    $scope.orderByDistance = function () {
+        $scope.currentOrdering = 'distanceFromUser';
+        $scope.closePopover();
     };
 
     $scope.updateFavorites(true);

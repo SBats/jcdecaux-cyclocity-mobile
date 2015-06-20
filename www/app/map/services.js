@@ -163,7 +163,8 @@ function MapService(appSettings, $q, $state) {
             maxZoom: appSettings.LEAFLET_CONF.MAX_ZOOM,
             scrollWheelZoom: true,
             zoomControl: false,
-            layers: this._baseLayers.main
+            layers: this._baseLayers.main,
+            trackResize: false
         };
 
         self._map = L.map(mapSelector, mapParameters);

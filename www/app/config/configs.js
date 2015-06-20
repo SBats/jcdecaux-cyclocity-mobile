@@ -40,7 +40,9 @@ var constants = {
         MAX_ZOOM: 17,
         CENTER_LONGITUDE: '1.4442469',
         CENTER_LATITUDE: '43.6044622'
-    }
+    },
+
+    DISABLE_CLUSTERING_AT_ZOOM: 16
 
 };
 

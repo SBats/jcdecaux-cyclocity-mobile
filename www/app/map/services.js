@@ -32,7 +32,7 @@ function MapService(appSettings, $q, $state) {
     self.createClusterLayer = function () {
         return new L.markerClusterGroup({
             showCoverageOnHover: false,
-            disableClusteringAtZoom: 16,
+            disableClusteringAtZoom: appSettings.DISABLE_CLUSTERING_AT_ZOOM,
             iconCreateFunction: function (cluster) {
                 var childCount = cluster.getChildCount();
 
@@ -180,6 +180,11 @@ function MapService(appSettings, $q, $state) {
         var result = Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))*100000);
 
         return result;
+    };
+
+    self.showSpecificLocation = function (coords) {
+        self._map.setZoom(appSettings.DISABLE_CLUSTERING_AT_ZOOM);
+        self._map.panTo(coords);
     };
 }
 

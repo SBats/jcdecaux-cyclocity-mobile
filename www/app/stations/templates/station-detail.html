@@ -3,6 +3,8 @@
         {{station.name}}
     </ion-nav-title>
     <ion-nav-buttons side="right">
+        <button ng-if="isIOS" class="button button-clear icon ion-ios-navigate-outline" ng-click="showStationOnMap()"></button>
+        <button ng-if="!isIOS" class="button button-clear icon ion-map" ng-click="showStationOnMap()"></button>
         <button ng-if="!isIOS" class="button button-clear icon ion-android-refresh" ng-click="refreshData()"></button>
         <button ng-if="isIOS" class="button button-clear icon ion-ios-refresh-empty" ng-click="refreshData()"></button>
     </ion-nav-buttons>
@@ -50,7 +52,7 @@
             <h3>Close Stations</h3>
             <div class="list">
                 <div class="item" ng-repeat="closeStation in closeStations | orderBy: 'distanceToStation' track by closeStation.number">
-                    <a ui-sref="root.station({stationId: closeStation.number})" class="item-content">
+                    <a ng-click="refreshData(closeStation.number)" class="item-content">
                         <div class="numbers">
                             <div class="cycles">
                                 <span>{{closeStation.available_bikes}}</span>

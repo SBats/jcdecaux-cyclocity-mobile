@@ -1,15 +1,19 @@
 'usse strict';
 
-function StationController(station, $scope, $rootScope, StationsService, FavoritesService) {
+function StationController(station, $scope, $rootScope, $state, StationsService, MapService, FavoritesService) {
     console.log(station);
     $scope.station = station;
     $scope.isInFavorites = FavoritesService.isInFavorites;
 
-    $scope.refreshData = function() {
-        StationsService.getStationDetail($scope.station.number, true)
+    $scope.refreshData = function(stationId) {
+        if (!stationId) {
+            var stationId = $scope.station.number;
+        }
+        StationsService.getStationDetail(stationId, true)
             .then(
                 function (newStation) {
                     $scope.station = newStation;
+                    init();
                 },
                 function (err) {
                     console.error(err);
@@ -19,7 +23,7 @@ function StationController(station, $scope, $rootScope, StationsService, Favorit
 
     function getDistance() {
         $scope.distanceToStation = '...';
-        StationsService.getDistanceToStation(station)
+        StationsService.getDistanceToStation($scope.station)
             .then(
                 function (distance) {
                     $scope.distanceToStation = distance;
@@ -31,7 +35,7 @@ function StationController(station, $scope, $rootScope, StationsService, Favorit
     }
 
     function getCloseStations() {
-        StationsService.getCloseStations(station)
+        StationsService.getCloseStations($scope.station)
             .then(
                 function (closeStations) {
                     $scope.closeStations = closeStations;
@@ -42,12 +46,19 @@ function StationController(station, $scope, $rootScope, StationsService, Favorit
     }
 
     $scope.switchFavorite = function () {
-        if (FavoritesService.isInFavorites(station)) {
-            FavoritesService.removeAFavorite(station);
+        if (FavoritesService.isInFavorites($scope.station)) {
+            FavoritesService.removeAFavorite($scope.station);
         } else {
-            FavoritesService.addAFavorite(station);
+            FavoritesService.addAFavorite($scope.station);
         }
         $rootScope.numberOfFavorites = FavoritesService.countFavorites();
+    };
+
+    $scope.showStationOnMap = function () {
+        $state.go('root.map');
+        setTimeout(function () {
+            MapService.showSpecificLocation($scope.station.position);
+        }, 800);
     };
 
     function init() {

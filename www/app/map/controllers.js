@@ -32,17 +32,21 @@ function MapController($scope, $rootScope, MapService, StationsService) {
     };
 
     function init() {
-        MapService.initMap('map');
+        $rootScope.map = MapService.initMap('map');
         $scope.loadStations(true);
         $scope.currentView = MapService.getCurrentView();
     }
-    init();
 
-    $rootScope.$on('$stateChangeStart', function (event, toState) {
+    if (!$rootScope.map) {
+        init();
+    }
+
+    $rootScope.$on('$stateChangeSuccess', function (event, toState) {
         if (toState.name === 'root.map') {
             $scope.loadStations(true);
         }
     });
+
 }
 
 module.exports = {

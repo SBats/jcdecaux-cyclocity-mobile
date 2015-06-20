@@ -40,7 +40,8 @@
                 <div class="col">
                     <div ng-class="{'card': !isIOS}" class="distance">
                         <i class='icon ion-android-walk'></i>
-                        <span class="number">{{distanceToStation}} from your position</span>
+                        <span class="number">{{distanceToStation}}</span>
+                        <span class="text"> from your position</span>
                     </div>
                 </div>
             </div>
@@ -48,7 +49,7 @@
         <div class="close-stations">
             <h3>Close Stations</h3>
             <div class="list">
-                <div class="item" ng-repeat="closeStation in closeStations">
+                <div class="item" ng-repeat="closeStation in closeStations | orderBy: 'distanceToStation' track by closeStation.number">
                     <a ui-sref="root.station({stationId: closeStation.number})" class="item-content">
                         <div class="numbers">
                             <div class="cycles">
@@ -63,7 +64,6 @@
                         <div class="infos">
                             <div class="name"><h2>{{closeStation.name}}</h2></div>
                             <div class="address"><p>{{closeStation.address}}</p></div>
-                            <div class="distance">{{closeStation.distance}}</div>
                         </div>
                     </a>
                 </div>

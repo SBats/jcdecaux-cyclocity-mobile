@@ -177,9 +177,9 @@ function MapService(appSettings, $q, $state) {
         var x = pointA.lat - pointB.lat;
         var y = pointA.lng - pointB.lng;
 
-        var result = parseInt(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))*100000);
+        var result = Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))*100000);
 
-        return Math.round(result);
+        return result;
     };
 }
 

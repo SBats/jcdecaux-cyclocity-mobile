@@ -89,7 +89,7 @@ function StationsService($q, $resource, appSettings, MapService) {
                     var distance = MapService.getDistanceBetweenTwoPoints(userLocation, station.position);
 
                     if (distance > 500) {
-                        distance = distance + ' km';
+                        distance = Math.round(distance/10)/100 + ' km';
                     } else {
                         distance = distance + ' m';
                     }
@@ -115,12 +115,7 @@ function StationsService($q, $resource, appSettings, MapService) {
                     for (var i = stations.length - 1; i >= 0; i--) {
                         comparedStation = stations[i];
                         distance = MapService.getDistanceBetweenTwoPoints(station.position, comparedStation.position);
-                        if (distance <= appSettings.CLOSE_STATIONS_MAX_DISTANCE) {
-                            if (distance > 500) {
-                                distance = distance + ' km';
-                            } else {
-                                distance = distance + ' m';
-                            }
+                        if (distance <= appSettings.CLOSE_STATIONS_MAX_DISTANCE && station.number !== comparedStation.number) {
                             comparedStation.distanceToStation = distance;
                             closeStations.push(comparedStation);
                         }

@@ -15,6 +15,21 @@
         .parks {
             color: $secondary-color;
         }
+        .distance {
+            margin-top: 0;
+            padding: 1rem;
+            text-align: center;
+            i {
+                font-size: 1.5rem;
+                margin-right: 1rem;
+                color: $positive;
+            }
+            .number {
+                font-size: 1.2rem;
+                margin-right: 1rem;
+                color: $positive;
+            }
+        }
     }
     .close-stations {
         h3 {
@@ -60,10 +75,9 @@
     .station-detail {
         background: $light-grey;
         .header {
-            padding: 4rem 0 2rem 0;
+            padding: 3rem 0 2rem 0;
              h1 {
                 font-size: 2rem;
-                line-height: 1.5rem;
                 text-transform: uppercase;
             }
             h2 {
@@ -138,6 +152,9 @@
                 font-size: 2rem;
                 color: white;
             }
+        }
+        .station-informations > .list {
+            margin-bottom: 0;
         }
         .station-informations .item {
             position: relative;

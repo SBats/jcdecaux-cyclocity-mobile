@@ -5,7 +5,7 @@ var constants = {
     APP_ID: 'velo-toulouse',
     API_URL: 'https://api.jcdecaux.com/vls/v1/stations',
     JCDKEY: '003549deb9ac51b9d34cacc018c0e7f97039c6f9',
-    MAPQUESTKEY: '003549deb9ac51b9d34cacc018c0e7f97039c6f9',
+    MAPQUESTKEY: '',
     CITY: 'Toulouse',
     DEFAULT_VUE: 'cycle', //can be 'cycle' or 'parks'
 
@@ -24,10 +24,12 @@ var constants = {
     //
     //
     MAIN_LEAFLET_BACKGROUND: {
-        LAYER_URL: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        LAYER_URL: 'http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.png',
          OPTIONS: {
             id: 'main',
-            attribution: '&copy; openstreetmap'
+            subdomains: '1234',
+            type: 'osm',
+            attribution: 'MapQuest'
         }
     },
 

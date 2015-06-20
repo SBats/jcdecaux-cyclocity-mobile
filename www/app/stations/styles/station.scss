@@ -8,11 +8,51 @@
             color: inherit;
         }
     }
-    .cycles {
-        color: $primary-color;
+    .station-informations {
+        .cycles {
+            color: $primary-color;
+        }
+        .parks {
+            color: $secondary-color;
+        }
     }
-    .parks {
-        color: $secondary-color;
+    .close-stations {
+        h3 {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        a.item-content {
+            display: flex;
+            justify-content: space-between;
+            > div {
+                margin: 0 1rem;
+                &:first-child {
+                    margin-left: 0;
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+        .infos {
+            flex: 1 1 50%;
+        }
+        .numbers {
+            font-size: 1.4rem;
+            width: 4rem;
+            span, i {
+                display: inline-block;
+                width: 1.5rem;
+                text-align: center;
+            }
+        }
+        .cycles {
+            color: $primary-color;
+            margin-bottom: 1rem;
+        }
+        .parks {
+            color: $secondary-color;
+        }
     }
 }
 
@@ -46,7 +86,7 @@
                 }
             }
         }
-        .cycles, .parks {
+        .station-informations .cycles, .station-informations .parks {
             padding: 1.4rem;
             text-align: center;
             .number {
@@ -99,14 +139,14 @@
                 color: white;
             }
         }
-        .item {
+        .station-informations .item {
             position: relative;
             margin-left: 16px;
             padding-left: 0;
             border-left: none;
             border-right: none;
         }
-        .cycles, .parks {
+        .station-informations .cycles, .station-informations .parks {
             .number {
                 display: inline-block;
                 font-size: 1.5rem;

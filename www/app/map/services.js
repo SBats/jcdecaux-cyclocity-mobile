@@ -179,13 +179,7 @@ function MapService(appSettings, $q, $state) {
 
         var result = parseInt(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))*100000);
 
-        if (result > 500) {
-            result = String(result/1000).substr(0, 4) + 'km';
-        } else {
-            result = result + 'm';
-        }
-
-        return result;
+        return Math.round(result);
     };
 }
 

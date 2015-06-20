@@ -19,10 +19,24 @@ function StationController(station, $scope, $rootScope, StationsService, Favorit
 
     function getDistance() {
         $scope.distanceToStation = '...';
-        StationsService.getDistanceToStation(station.position)
+        StationsService.getDistanceToStation(station)
             .then(
                 function (distance) {
                     $scope.distanceToStation = distance;
+                },
+                function (err) {
+                    console.error(err);
+                }
+            );
+    }
+
+    function getCloseStations() {
+        StationsService.getCloseStations(station)
+            .then(
+                function (closeStations) {
+                    $scope.closeStations = closeStations;
+                }, function (err) {
+                    console.error(err);
                 }
             );
     }
@@ -38,6 +52,7 @@ function StationController(station, $scope, $rootScope, StationsService, Favorit
 
     function init() {
         getDistance();
+        getCloseStations();
     }
 
     init();

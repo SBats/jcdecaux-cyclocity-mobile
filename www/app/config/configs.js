@@ -7,7 +7,8 @@ var constants = {
     JCDKEY: '003549deb9ac51b9d34cacc018c0e7f97039c6f9',
     MAPQUESTKEY: '',
     CITY: 'Toulouse',
-    DEFAULT_VUE: 'cycle', //can be 'cycle' or 'parks'
+    DEFAULT_VUE: 'cycle', // can be 'cycle' or 'parks',
+    CLOSE_STATIONS_MAX_DISTANCE: 500,// in meters
 
     // LANGUAGES PARAMETERS //
     //

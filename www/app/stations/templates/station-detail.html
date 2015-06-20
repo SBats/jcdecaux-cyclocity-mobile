@@ -19,27 +19,53 @@
                 <i ng-if="isInFavorites(station) && isIOS" class="icon ion-ios-star"></i>
             </div>
         </div>
-        <div ng-class="{'row': !isIOS, 'list': isIOS}">
-            <div ng-class="{'col': !isIOS, 'item': isIOS}">
-                <div ng-class="{'card': !isIOS}" class="cycles">
-                    <i class="icon ion-android-bicycle"></i>
-                    <span class="number">{{station.available_bikes}}</span>
-                    <span class="text">Bikes</span>
+        <div class="station-informations">
+            <div ng-class="{'row': !isIOS, 'list': isIOS}">
+                <div ng-class="{'col': !isIOS, 'item': isIOS}">
+                    <div ng-class="{'card': !isIOS}" class="cycles">
+                        <i class="icon ion-android-bicycle"></i>
+                        <span class="number">{{station.available_bikes}}</span>
+                        <span class="text">Bikes</span>
+                    </div>
+                </div>
+                <div ng-class="{'col': !isIOS, 'item': isIOS}">
+                    <div ng-class="{'card': !isIOS}" class="parks">
+                        <i class="icon">P</i>
+                        <span class="number">{{station.available_bike_stands}}</span>
+                        <span class="text">Stands</span>
+                    </div>
                 </div>
             </div>
-            <div ng-class="{'col': !isIOS, 'item': isIOS}">
-                <div ng-class="{'card': !isIOS}" class="parks">
-                    <i class="icon">P</i>
-                    <span class="number">{{station.available_bike_stands}}</span>
-                    <span class="text">Stands</span>
+            <div class="row">
+                <div class="col">
+                    <div ng-class="{'card': !isIOS}" class="distance">
+                        <i class='icon ion-android-walk'></i>
+                        <span class="number">{{distanceToStation}} from your position</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="card distance">
-                    <i class='icon ion-android-walk'></i>
-                    <span class="number">{{distanceToStation}}</span>
+        <div class="close-stations">
+            <h3>Close Stations</h3>
+            <div class="list">
+                <div class="item" ng-repeat="closeStation in closeStations">
+                    <a ui-sref="root.station({stationId: closeStation.number})" class="item-content">
+                        <div class="numbers">
+                            <div class="cycles">
+                                <span>{{closeStation.available_bikes}}</span>
+                                <i class="icon ion-android-bicycle"></i>
+                            </div>
+                            <div class="parks">
+                                <span>{{closeStation.available_bike_stands}}</span>
+                                <i class="icon">P</i>
+                            </div>
+                        </div>
+                        <div class="infos">
+                            <div class="name"><h2>{{closeStation.name}}</h2></div>
+                            <div class="address"><p>{{closeStation.address}}</p></div>
+                            <div class="distance">{{closeStation.distance}}</div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

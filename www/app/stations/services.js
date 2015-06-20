@@ -76,7 +76,7 @@ function StationsService($q, $resource, appSettings, MapService) {
         return deferred.promise;
     };
 
-    self.getDistanceToStation = function (stationLocation) {
+    self.getDistanceToStation = function (station) {
         var deferred = $q.defer();
         MapService.getLocation()
             .then(
@@ -86,8 +86,46 @@ function StationsService($q, $resource, appSettings, MapService) {
                         lng: location.coords.longitude
                     };
 
-                    var distance = MapService.getDistanceBetweenTwoPoints(userLocation, stationLocation);
+                    var distance = MapService.getDistanceBetweenTwoPoints(userLocation, station.position);
+
+                    if (distance > 500) {
+                        distance = distance + ' km';
+                    } else {
+                        distance = distance + ' m';
+                    }
                     deferred.resolve(distance);
+                },
+                function (err) {
+                    console.error(err);
+                }
+            );
+
+        return deferred.promise;
+    };
+
+    self.getCloseStations = function (station) {
+        var deferred = $q.defer(),
+            closeStations = [];
+
+        self.getStations()
+            .then(
+                function (stations) {
+                    var comparedStation = {},
+                        distance = 0;
+                    for (var i = stations.length - 1; i >= 0; i--) {
+                        comparedStation = stations[i];
+                        distance = MapService.getDistanceBetweenTwoPoints(station.position, comparedStation.position);
+                        if (distance <= appSettings.CLOSE_STATIONS_MAX_DISTANCE) {
+                            if (distance > 500) {
+                                distance = distance + ' km';
+                            } else {
+                                distance = distance + ' m';
+                            }
+                            comparedStation.distanceToStation = distance;
+                            closeStations.push(comparedStation);
+                        }
+                    }
+                    deferred.resolve(closeStations);
                 },
                 function (err) {
                     console.error(err);

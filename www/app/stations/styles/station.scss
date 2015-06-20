@@ -41,7 +41,9 @@
                 font-size: 2rem;
                 line-height: 3.5rem;
                 background: $primary-color;
-                
+                i {
+                    vertical-align: middle;
+                }
             }
         }
         .cycles, .parks {
@@ -89,11 +91,12 @@
             }
             .fav-toggle {
                 width: 4rem;
-                border-left: 1px solid white;
-                color: white;
-                font-size: 2rem;
+                height: 4rem;
                 line-height: 3.5rem;
-                background: transparent;
+                border-left: 1px solid white;
+                background: transparent;box-shadow: none;
+                font-size: 2rem;
+                color: white;
             }
         }
         .item {

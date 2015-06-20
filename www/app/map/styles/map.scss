@@ -31,11 +31,12 @@
 
 .tab-item {
     opacity: 0.4;
+    max-width: none;
 }
 
 .switch-tabs {
     .tabs {
-        bottom: -2px;
+        padding-top: 0;
     }
     .tab-item.cycle {
         color: $primary-color;

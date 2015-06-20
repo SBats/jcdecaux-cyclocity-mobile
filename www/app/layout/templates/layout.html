@@ -26,9 +26,8 @@
           <span>Favorites</span>
           <span ng-if="numberOfFavorites > 0" class="favorites-counter"> {{$root.numberOfFavorites}}</span>
         </ion-item>
-        <ion-item ng-if="isIOS || isAndroid" ng-click="exitApp()">
-          <i ng-if="isIOS" class="icon ion-ios-bolt-outline"></i>
-          <i ng-if="!isIOS" class="icon ion-power"></i>
+        <ion-item ng-if="isAndroid" ng-click="exitApp()">
+          <i class="icon ion-power"></i>
           <span>Exit App</span>
         </ion-item>
       </ion-list>

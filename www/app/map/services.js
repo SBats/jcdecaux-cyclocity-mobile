@@ -4,13 +4,17 @@ var L = window.L;
 
 function MapService(appSettings, $q, $state) {
     var self = this;
+    var localisationMarkerSize = {
+        android: [40, 40],
+        ios: [60, 60]
+    };
 
     self.createLocationMarker = function (position) {
         if (!self._locationMarker) {
             var currentIcon = L.divIcon({
                 className: 'location',
-                iconSize: [60, 60],
-                iconAnchor: [60, 60]
+                iconSize: ionic.Platform.isAndroid() ? localisationMarkerSize.android : localisationMarkerSize.ios,
+                iconAnchor: ionic.Platform.isAndroid() ? localisationMarkerSize.android : localisationMarkerSize.ios
             });
 
             self._locationMarker = new L.Marker([position.coords.latitude, position.coords.longitude],{
@@ -83,7 +87,7 @@ function MapService(appSettings, $q, $state) {
                 iconUrl: 'img/markers/'+ self._currentView +'-marker-'+ percent +'.png',
                 iconSize: [38, 60],
                 iconAnchor: [19, 60],
-                labelAnchor: [-19, -37]
+                labelAnchor: [-32, -37]
             });
 
             var currentMarker = new L.Marker([aStation.position.lat, aStation.position.lng],{

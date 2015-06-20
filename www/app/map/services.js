@@ -20,7 +20,6 @@ function MapService(appSettings, $q, $state) {
             self._locationMarker = new L.Marker([position.coords.latitude, position.coords.longitude],{
                 icon: currentIcon
             });
-            console.log(self._locationMarker);
             self._map.addLayer(self._locationMarker);
         } else {
             self._locationMarker.setLatLng([position.coords.latitude, position.coords.longitude]);
@@ -66,7 +65,6 @@ function MapService(appSettings, $q, $state) {
         self.getLocation()
             .then(
                 function (position) {
-                    console.log(position);
                     self._map.setView([position.coords.latitude, position.coords.longitude], 16);
                     self.createLocationMarker(position);
                 },

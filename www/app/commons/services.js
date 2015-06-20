@@ -36,7 +36,6 @@ function GeoUtilities($resource, $q) {
 
             requests.query().$promise
                 .then(function (data) {
-                    console.log(data);
                     deferred.resolve(data);
                 });
 

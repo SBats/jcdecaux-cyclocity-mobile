@@ -1,7 +1,6 @@
 'usse strict';
 
 function StationController(station, $scope, $rootScope, $state, StationsService, MapService, FavoritesService) {
-    console.log(station);
     $scope.station = station;
     $scope.isInFavorites = FavoritesService.isInFavorites;
 

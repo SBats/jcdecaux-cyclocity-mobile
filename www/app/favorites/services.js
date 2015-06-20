@@ -24,7 +24,6 @@ function FavoritesService($q, appSettings, StationsService, MapService) {
             var favorites_json = localStorage.getItem(storageName);
             self._favorites = JSON.parse(favorites_json);
         }
-        console.log(self._favorites);
 
         return self._favorites;
     };

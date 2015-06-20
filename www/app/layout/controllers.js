@@ -1,7 +1,6 @@
 'use strict';
 
 function LayoutController($scope, $rootScope, FavoritesService) {
-    console.log('app loaded');
 
     $scope.deviceInformation = ionic.Platform.device();
 
